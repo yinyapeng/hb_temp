@@ -3,7 +3,7 @@ package bean
 type TreeTableData struct {
 	Id   string `json:"id"`
 	Name string `json:"name"`
-	PId  string `json:"PId"`
+	PId  string `json:"pId"`
 }
 
 type DataBaseData struct {
