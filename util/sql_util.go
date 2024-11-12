@@ -68,9 +68,8 @@ func GetTables() []bean.TreeTableData {
 	var sql string
 	switch dataBaseData.DataBaseType {
 	case "dm":
-		sql = `select a.TABLE_NAME Id,b.COMMENT$ Name,? PId from ALL_TABLES a 
-		left join SYSTABLECOMMENTS b on a.OWNER = b.SCHNAME and a.TABLE_NAME = b.TVNAME and b.TABLE_TYPE = 'TABLE'
-		where a.OWNER = ?;`
+		sql = `SELECT a.TABLE_NAME Id,CONCAT(a.TABLE_NAME,CASE WHEN b.COMMENT$ IS NOT NULL THEN CONCAT('(',b.COMMENT$,')') END) Name,? PId FROM ALL_TABLES a 
+		LEFT JOIN SYSTABLECOMMENTS b ON a.OWNER = b.SCHNAME AND a.TABLE_NAME = b.TVNAME AND b.TABLE_TYPE = 'TABLE' WHERE a.OWNER = ?;`
 	case "mssql":
 	}
 
@@ -97,10 +96,10 @@ func GetTabColumns(linkName, schema, tableName string) []bean.TabColumns {
 	var sql string
 	switch dataBaseData.DataBaseType {
 	case "dm":
-		sql = `select a.TABLE_NAME tableName,a.COLUMN_NAME columnName,a.DATA_TYPE dataType,a.DATA_LENGTH dataLength,a.NULLABLE nullable,a.COLUMN_ID columnId,b.COMMENT$ describe
-		from ALL_TAB_COLUMNS a 
-		left join SYSCOLUMNCOMMENTS b on a.OWNER = b.SCHNAME and a.TABLE_NAME = b.TVNAME and a.COLUMN_NAME = b.COLNAME and b.TABLE_TYPE = 'TABLE'
-		where a.owner = ? AND a.TABLE_NAME=?;`
+		sql = `SELECT a.TABLE_NAME tableName,a.COLUMN_NAME columnName,a.DATA_TYPE dataType,a.DATA_LENGTH dataLength,a.NULLABLE nullable,a.COLUMN_ID columnId,b.COMMENT$ describe
+		FROM ALL_TAB_COLUMNS a 
+		LEFT JOIN SYSCOLUMNCOMMENTS b ON a.OWNER = b.SCHNAME AND a.TABLE_NAME = b.TVNAME AND a.COLUMN_NAME = b.COLNAME AND b.TABLE_TYPE = 'TABLE'
+		WHERE a.owner = ? AND a.TABLE_NAME=?;`
 	case "mssql":
 	}
 	if sql != "" {
