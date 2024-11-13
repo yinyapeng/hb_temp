@@ -2,7 +2,6 @@ package gen
 
 import (
 	"context"
-	"fmt"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gres"
 	"github.com/yinyapeng/hb_temp/api/gen/v1"
@@ -17,10 +16,10 @@ func (c *ControllerV1) Static(ctx context.Context, req *v1.StaticReq) (res *v1.S
 	} else {
 		router := r.GetRouter(".(html|js|css|png|gif)").String()
 
-		fmt.Println("public/" + router)
-		temp := gres.GetContent("public/" + router)
 		suffix := router[strings.LastIndex(router, ".")+1:]
 		r.Response.Header().Set("content-type", "text/"+suffix+"; charset=utf-8")
+
+		temp := gres.GetContent("public/" + router)
 		r.Response.Writeln(temp)
 	}
 	return
