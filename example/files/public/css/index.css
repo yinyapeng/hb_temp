@@ -1,0 +1,96 @@
+.container {
+  display: none;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 16px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.content {
+  display: flex;
+}
+
+.tree {
+  width: 40%;
+  border-right: 1px solid #f1f1f1;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.form {
+  width: 60%;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+  padding: 24px 16px;
+}
+
+.form-item {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.item-label {
+  width: 84px;
+  margin-right: 12px;
+  line-height: 36px;
+  text-align: right;
+}
+
+.item-value {
+  flex: 1;
+  position: relative;
+}
+
+.item-value input {
+  height: 36px;
+  line-height: 35px;
+}
+
+.select-directory {
+  width: 90px;
+  height: calc(100% - 2px);
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  background: #EFEFEF;
+  text-align: center;
+  line-height: 34px;
+  border-left: 1px solid #767676;
+}
+
+.select-directory input {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0px;
+  cursor: pointer;
+}
+
+.value-row {
+  display: flex;
+}
+
+.value-row label {
+  display: flex;
+  margin-right: 16px;
+}
+
+.value-row .label-name {
+  line-height: 36px;
+  margin-left: 4px;
+}
+
+.generate-btn {
+  width: 120px;
+  height: 40px;
+  display: block;
+  margin: 24px auto;
+  cursor: pointer;
+}
