@@ -7,6 +7,6 @@ import (
 )
 
 func (c *ControllerV1) Generate(ctx context.Context, req *v1.GenerateReq) (res *v1.GenerateRes, err error) {
-	g.Dump()
+	g.Dump(req)
 	return
 }
