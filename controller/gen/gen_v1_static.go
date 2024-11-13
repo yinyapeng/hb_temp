@@ -17,6 +17,7 @@ func (c *ControllerV1) Static(ctx context.Context, req *v1.StaticReq) (res *v1.S
 		name := r.Get("name")
 		fmt.Println("public/" + t.String() + "/" + name.String() + "." + t.String())
 		temp := gres.GetContent("public/" + t.String() + "/" + name.String() + "." + t.String())
+		r.Response.Header().Set("content-type", "text/"+t.String()+"; charset=utf-8")
 		r.Response.Writeln(temp)
 	}
 	return
