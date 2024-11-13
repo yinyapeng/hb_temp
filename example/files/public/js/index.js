@@ -32,21 +32,24 @@ $('.generate-btn').click(function () {
     }
   })
   var sendData = {
-    tableName: checkedData,
+    tableList: JSON.stringify(checkedData),
     path: $('#path').val(),
     ignoreTablePrefix: $('#ignoreTablePrefix').val(),
     ignoreTableSuffix: $('#ignoreTableSuffix').val(),
     ignoreFieldPrefix: $('#ignoreFieldPrefix').val(),
     ignoreFieldSuffix: $('#ignoreFieldSuffix').val()
   }
-  var generateType = []
   $('.generate-type').find('input[type="checkbox"]').each(function () {
     sendData[$(this).attr('id')] = $(this).prop('checked')
   })
-  generateType = generateType.slice(0, -1)
-  $.post('generate', sendData, res => {
-    if (res.code === 0) {
-      window.alert('模板生成成功')
+  $.ajax({
+    type: 'post',
+    url: 'generate',
+    data: sendData,
+    success: res => {
+      if (res.code === 0) {
+        window.alert('模板生成成功')
+      }
     }
   })
 })
